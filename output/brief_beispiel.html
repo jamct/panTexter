@@ -1,0 +1,437 @@
+<!DOCTYPE html>  
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title> Ihre Anfrage </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="author" content="Jan Mahn"/>
+  <style>
+/* 
+ Normbrief DIN 5008 for pandoc
+ --------------------------------------------------------------- 
+ by Wolfgang Reszel for Mac & i (www.mac-and-i.de) 2014:
+ https://github.com/mac-and-i/Normbrief-mit-Markdown
+ 
+ modified for use with pandoc converter by Jan Mahn for c't (ct.de) 2018:
+ https://github.com/jamct/panTexter
+ 
+ */
+
+
+/* @group Basis
+ ---------------------------------------------------------------
+ */
+
+
+html {
+	width: 198mm; /* Üblichen Druckrand abziehen (2*6mm) */
+	padding: 0;
+	margin: 0;
+}
+
+body, p, td, div {
+	font: normal 10.5pt/1.4em Avenir,Helvetica,Arial,sans-serif !important;
+}
+
+body {
+	/*      45-6mm     25mm-6mm */
+	margin: 39mm 14mm 9mm 19mm;
+	padding: 0;
+	width: 165mm;
+	color: #000;
+	border: none;
+	background: none;
+}
+
+div#wrapper {
+	height: 100%;
+	display: inline;
+				text-align:justify;
+	}
+
+#wrapper #contentdiv {
+	width: 210mm;
+	padding: 39mm 14mm 9mm 19mm;
+}
+
+a {
+	color:#000;
+}
+
+p {
+	margin: 0 0 1em 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 1.5em 0 0.5em 0;
+	line-height: 1.2em;
+	border: none;
+}
+
+h4 {
+	font-size: 115%;
+}
+h5, h6 {
+	font-size: 100%;
+}
+
+hr {
+	border: none;
+}
+
+body hr:first-child, #wrapper hr:first-child {
+	display: none;
+}
+
+blockquote {
+	border: 0;
+	margin: 0;
+	padding: 0;
+	color: #000;
+}
+
+blockquote+hr+blockquote+hr {
+	clear: both;
+}
+
+figure, img {
+	margin: 0 1em 1em 1em;
+	display: block;
+}
+
+img {
+	max-width: 100%;
+	border: none;
+}
+
+figure img {
+	margin: 0;
+	display: inline;
+}
+
+figcaption {
+	font-size: 90%;
+	margin-bottom: 0.5em;
+}
+
+.poetry pre {
+	display:block;
+	font-family:Georgia, Garamond, serif!important;
+	font-size:110%!important;
+	font-style:italic;
+	line-height:1.6em;
+	margin-left:1em
+}
+
+.poetry pre code {
+	font-family:Georgia, Garamond, serif!important
+}
+
+/* @end */
+
+
+/* @group Kontaktdaten/Briefkopf
+ ---------------------------------------------------------------
+ */
+
+blockquote {
+	width:65mm;
+	float:right;
+	margin:0 0 2em 0;
+}
+
+blockquote a {
+	text-decoration: none;
+}
+
+blockquote h1 {
+	font-size: 120%;
+	margin: 0;
+}
+
+blockquote+hr {
+	display: none;
+}
+
+/* @end Kontaktdaten/Briefkopf */
+
+
+/* @group Adressfeld
+ ---------------------------------------------------------------
+ */
+
+blockquote+hr+blockquote {
+	width:80mm;
+	float:left;
+	margin:0;
+}
+
+blockquote+hr+blockquote h2 {
+	height: 10mm;
+	width: 80mm;
+	font-weight: normal;
+	font-size: 80%;
+	margin:0;
+}
+
+/* @end Adressfeld */
+
+
+/* @group Fließtext
+ ---------------------------------------------------------------
+ */
+
+/* 1. Zeile: Datum rechtsbündig */
+blockquote+hr+blockquote+hr+blockquote {
+	float: right;
+	clear: both;
+	width: 65mm;
+}
+
+blockquote+hr+blockquote+hr+blockquote+* {
+	clear:both;
+}
+
+/* Betreffzeile */
+blockquote+h3 {
+	font-size: 100%;
+	margin-bottom: 2em;
+}
+
+/* @end Fließtext */
+
+
+/* @group Unterschrift */
+
+p+blockquote, p+hr+blockquote, img+blockquote, figure+blockquote, ol+blockqoute, ul+blockquote {
+	float: none;
+	margin-top: 2em;
+	line-height: 2em;
+}
+
+p+blockquote p+p:last-child, p+hr+blockquote p+p:last-child, img+blockquote p+p:last-child, figure+blockquote p+p:last-child, ol+blockqoute p+p:last-child, ul+blockquote p+p:last-child {
+	margin-top: 3em;
+}
+
+/* @end */
+
+
+/* @group Fußnoten
+ ---------------------------------------------------------------
+ */
+
+.reversefootnote, #footnotes a, a.footnote {
+	text-decoration: none;
+}
+
+.footnotes, #footnotes {
+	margin-top: 2em;
+	border-top: 1px solid #888;
+	padding-top: 1em;
+	font-size: 80%;
+}
+
+.footnotes ol {
+	margin: 0;
+}
+
+.footnotes hr {
+	display: none;
+}
+
+sup, sub, p>a.footnote {
+	height:0;
+	line-height:0.8;
+	vertical-align:super;
+	font-size:.8em;
+}
+
+sub {
+	vertical-align: sub;
+	top: -1px;
+}
+
+/* @end */
+
+
+/* @group Listen
+ ---------------------------------------------------------------
+ */
+
+dd {
+	margin-bottom:1em
+}
+
+ul { 
+	list-style-type: square; 
+}
+
+li > p:first-child {
+	margin:0
+}
+
+ul, ol {
+	padding-left: 1.5em;
+}
+
+ul ul,ul ol {
+	margin-bottom:.4em
+}
+
+/* @end Listen */
+
+
+/* @group Tabellen
+ ---------------------------------------------------------------
+ */
+
+caption,col,colgroup,table,tbody,td,tfoot,th,thead,tr {
+	border-spacing:0
+}
+
+table {
+	border: none;
+	border-collapse:collapse;
+	margin: 2em 0;
+	padding:0;
+	width: 100%;
+}
+
+h1+table, h2+table, h3+table, h4+table {
+	margin-top: 0;
+}
+
+table th:first-child {
+	width: 50%;
+}
+
+table th,table td {
+	line-height:1.8em;
+	padding:0 1em;
+	border: none;
+	border-bottom:1px solid #888;
+	border-right:1px solid #888;
+}
+table th:first-child,table td:first-child,
+table th:last-child,table td:last-child {
+	padding: 0;
+}
+
+table th:last-child,table td:last-child {
+	border-right: none;
+}
+
+table tr:last-child td {
+	border-bottom: 0;
+}
+
+table thead {
+	border-bottom:2px solid #000
+}
+
+table tbody {
+	border-top:1px solid #888
+}
+
+table tbody:last-child {
+	border-top: 2px solid #000;
+}
+
+/* @end Tabellen */
+
+.falzmarke{
+	position:fixed;
+
+	left:2mm;
+	width:5mm;
+	border-top:1px solid #ccc;
+}
+.falzmarke.eins{
+	top:99mm;
+}
+.falzmarke.zwei{
+	top:204mm;
+}
+
+/* --------------------------------------------------------------- */
+
+@media print {
+	img, pre, blockquote, table, figure {
+		page-break-inside: avoid
+	}
+
+	#wrapper #contentdiv { /* Fix for nvALT */
+		margin: -23mm -19mm;
+		padding: 0;
+	}
+	#wrapper #contentdiv * { /* Fix for nvALT */
+		zoom: 1.22;
+	}
+	#wrapper #contentdiv * * { /* Fix for nvALT */
+		zoom: 1;
+	}
+
+	#wrapper{
+	width:100%;
+	}
+	
+	.reversefootnote,
+	#wrapper>header { display: none; }
+}
+@media print{
+#generated-toc-clone,#generated-toc{display:none!important}
+}
+
+</style>
+</head>
+<body class="normal">
+  <div id="wrapper">
+    <blockquote>
+	<h1>Jan Mahn</h1>
+	<h1>c’t Redaktion</h1>
+
+	<p>Karl-Wiechert-Allee 10<br/>
+	30625 Hannover</p>
+
+	<p>Telefon: 511<br/>
+			E-Mail: jam@ct.de<br/>
+			Website: ct.de | github.com/jamct </p>
+			</blockquote>
+
+	<hr />
+
+	<blockquote>
+	<h2 id="">Jan Mahn · Karl-Wiechert-Allee 10 · 30625 Hannover</h2>
+
+	<p>Ernst Empfänger<br/>
+	Wegweisender Weg 10<br/>
+	76543 Stadtstadt </p>
+	</blockquote>
+
+	<hr />
+
+	<blockquote>
+	<p>Hannover, 5.3.2018 </p>
+	</blockquote>
+	<h3>Ihre Anfrage</h3>
+
+	<p>Sehr geehrter Herr Empfänger,</p>
+
+	<p>vielen Dank für Ihr Schreiben vom 30.02.2018. Wir haben die Unterlagen geprüft und kommen zu dem Ergebnis, dass wir Ihnen hiermit dieses Antwortschreiben zukommen lassen können.</p>
+<p>Dieser Brief wurde in <em>Markdown</em> geschrieben und von pandoc umgewandelt. Alle Metadaten zum Brief stehen oben im YAML-Block.</p>
+
+	<blockquote>
+	<p>Mit freundlichem Gruß</p>
+
+	<p>Jan Mahn</p>
+	</blockquote>
+	
+		<hr />
+
+	</div>
+	<div class="falzmarke eins"></div>
+	<div class="falzmarke zwei"></div>
+
+</body>
+</html>
