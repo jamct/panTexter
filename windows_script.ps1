@@ -1,5 +1,5 @@
     $watcher = New-Object System.IO.FileSystemWatcher
-    $watcher.Path = "..\incoming\"
+    $watcher.Path = ".\incoming\"
     $watcher.Filter = "*.*"
     $watcher.IncludeSubdirectories = $true
     $watcher.EnableRaisingEvents = $true  
@@ -9,11 +9,11 @@
                 $date = Get-Date -Format d.M.yyyy
                 
 				$dateiname = (Get-Item $path).BaseName
-				$output = "..\output\"+$dateiname+".html"
+				$output = ".\output\"+$dateiname+".html"
                
 				If ( $dateiname.startswith("brief_") ) {
 					#Add-content "..\log.txt" -value $dateiname
-					pandoc $path -o $output --template=../templates/template_brief.htm --metadata date=$date
+					pandoc $path -o $output --template=./templates/template_brief.htm --metadata date=$date
 				}	
               }   
 
